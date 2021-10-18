@@ -26,8 +26,8 @@ def get_stock_symbol():
 
 def get_chart_type():
     print("Chart Types\n----------------")
-    print("1. Bar\n")
-    print("2. Line\n\n")
+    print("1. Bar")
+    print("2. Line\n")
     chart_type = input("Please enter the chart type you would like (1, 2): ")
 
     # if/elif/else that converts the number user entered into the desired chart type,
@@ -45,10 +45,10 @@ def get_chart_type():
 
 def get_time_series_func():
     print("Select the Time Series of the chart you want to Generate\n----------------------------")
-    print("1. Intraday\n")
-    print("2. Daily\n")
-    print("3. Weekly\n")
-    print("4. Monthly\n\n")
+    print("1. Intraday")
+    print("2. Daily")
+    print("3. Weekly")
+    print("4. Monthly\n")
     time_series = input("Please enter the time series function you would like to use (1, 2, 3, 4): ")
 
     # if/elif/else that converts the number user entered into the desired time series chart,
@@ -63,7 +63,7 @@ def get_time_series_func():
     return time_series
 
 def get_beginning_date():
-    date1 = input("Please enter the beginning date (YYYY-MM-DD): ")
+    date1 = input("\nPlease enter the beginning date (YYYY-MM-DD): ")
 
     # input validation goes here
 
@@ -74,7 +74,7 @@ def get_beginning_date():
     return date1
 
 def get_end_date():
-    date2 = input("Please enter the end date (YYYY-MM-DD): ")
+    date2 = input("\nPlease enter the end date (YYYY-MM-DD): ")
 
     # input validation goes here
 
@@ -113,7 +113,7 @@ def make_url():
 
 def main():
     print("Welcome to the Stock Data Visualizer!")
-    print("--------------------------------------")
+    print("--------------------------------------\n")
 
 
 
