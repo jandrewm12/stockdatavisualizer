@@ -50,17 +50,26 @@ def get_time_series_func():
     print("3. Weekly")
     print("4. Monthly\n")
     time_series = input("Please enter the time series function you would like to use (1, 2, 3, 4): ")
-
+    res = ''
     # if/elif/else that converts the number user entered into the desired time series chart,
     # else statement can be used for input validation
 
+    if(time_series == '1'):
+        res = "TIME_SERIES_INTRADAY"
+    elif(time_series == '2'):
+        res = "TIME_SERIES_DAILY"
+    elif(time_series == '3'):
+        res = "TIME_SERIES_WEEKLY"
+    elif(time_series == '4'):
+        res = "TIME_SERIES_MONTHLY"
 
+    return res
 
+def get_interval():
+    interval = input("Please enter the time interval (in minutes) you would like to use (1, 5, 15, 30, 60): ")
 
+    return interval
 
-
-    
-    return time_series
 
 def get_beginning_date():
     date1 = input("\nPlease enter the beginning date (YYYY-MM-DD): ")
@@ -85,20 +94,16 @@ def get_end_date():
     return date2
 
 def make_url():
+    url = 'https://www.alphavantage.co/query?function='
     ss = get_stock_symbol()
-    ct = get_chart_type()
     ts = get_time_series_func()
-    d1 = get_beginning_date()
-    d2 = get_end_date()
-
-    # use stringbuider to make url containing user input?
     
+    if(ts == "TIME_SERIES_INTRADAY"):
+        ti = get_interval()
+        return url + ts + "&symbol=" + ss + "&interval=" + ti + "min&apikey=LIE8L1SQATAK0ZTM"
 
-
-
-
-
-    return url
+    else:
+        return url + ts + "&symbol=" + ss + "&apikey=LIE8L1SQATAK0ZTM"
 
 # enter other functions below
 
@@ -123,8 +128,8 @@ def main():
     # based on user input.
 
     # replace the "demo" apikey below with your own key from https://www.alphavantage.co/support/#api-key
-    url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=LIE8L1SQATAK0ZTM'
-    r = requests.get(url)
+    #url = 'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=IBM&interval=5min&apikey=LIE8L1SQATAK0ZTM'
+    r = requests.get(make_url())
     data = r.json()
 
     print(data)
