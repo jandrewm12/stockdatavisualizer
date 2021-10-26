@@ -28,20 +28,18 @@ def get_chart_type():
     print("Chart Types\n----------------")
     print("1. Bar")
     print("2. Line\n")
-    chart_type = input("Please enter the chart type you would like (1, 2): ")
+    chart_type = int(input("Please enter the chart type you would like (1, 2): "))
 
     # if/elif/else that converts the number user entered into the desired chart type,
     # else statement can be used for input validation
-
-
-
-
-
-
-
-
     
-    return chart_type
+    if chart_type == 1 or chart_type == 2:
+        return chart_type
+    else:
+        print("INPUT ERROR: Please enter 1 or 2\n")
+        get_chart_type()
+             
+    #return chart_type
 
 def get_time_series_func():
     print("Select the Time Series of the chart you want to Generate\n----------------------------")
@@ -96,6 +94,7 @@ def get_end_date():
 def make_url():
     url = 'https://www.alphavantage.co/query?function='
     ss = get_stock_symbol()
+    ct = get_chart_type()
     ts = get_time_series_func()
     
     if(ts == "TIME_SERIES_INTRADAY"):
