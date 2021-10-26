@@ -28,16 +28,19 @@ def get_chart_type():
     print("Chart Types\n----------------")
     print("1. Bar")
     print("2. Line\n")
-    chart_type = int(input("Please enter the chart type you would like (1, 2): "))
-
-    # if/elif/else that converts the number user entered into the desired chart type,
-    # else statement can be used for input validation
-    
-    if chart_type == 1 or chart_type == 2:
-        return chart_type
-    else:
+    try:
+        chart_type = int(input("Please enter the chart type you would like (1, 2): "))
+        if chart_type == 1 or chart_type == 2:
+            return chart_type
+        else:
+            print("INPUT ERROR: Please enter 1 or 2\n")
+            get_chart_type()
+    except ValueError:
         print("INPUT ERROR: Please enter 1 or 2\n")
         get_chart_type()
+        
+    # if/elif/else that converts the number user entered into the desired chart type,
+    # else statement can be used for input validation
              
     #return chart_type
 
@@ -47,35 +50,49 @@ def get_time_series_func():
     print("2. Daily")
     print("3. Weekly")
     print("4. Monthly\n")
-    time_series = input("Please enter the time series function you would like to use (1, 2, 3, 4): ")
-    res = ''
-    # if/elif/else that converts the number user entered into the desired time series chart,
-    # else statement can be used for input validation
+    try:
+        time_series = input("Please enter the time series function you would like to use (1, 2, 3, 4): "))
+        res = ''
+        # if/elif/else that converts the number user entered into the desired time series chart,
+        # else statement can be used for input validation
 
-    if(time_series == '1'):
-        res = "TIME_SERIES_INTRADAY"
-    elif(time_series == '2'):
-        res = "TIME_SERIES_DAILY"
-    elif(time_series == '3'):
-        res = "TIME_SERIES_WEEKLY"
-    elif(time_series == '4'):
-        res = "TIME_SERIES_MONTHLY"
-    else:
+        if(time_series == '1'):
+            res = "TIME_SERIES_INTRADAY"
+        elif(time_series == '2'):
+            res = "TIME_SERIES_DAILY"
+        elif(time_series == '3'):
+             res = "TIME_SERIES_WEEKLY"
+        elif(time_series == '4'):
+            res = "TIME_SERIES_MONTHLY"
+        else:
+            print("INPUT ERROR: Please enter 1,2,3,or 4\n")
+            get_time_series_func()
+
+    except ValueError:
         print("INPUT ERROR: Please enter 1,2,3,or 4\n")
         get_time_series_func()
+
         
     return res
 
 def get_interval():
-    interval = input("Please enter the time interval (in minutes) you would like to use (1, 5, 15, 30, 60): ")
-
-    return interval
+    try:
+        interval = int(input("Please enter the time interval (in minutes) you would like to use (1, 5, 15, 30, 60): "))
+        if interval == 1 or interval == 5 or interval == 15 or interval == 30 or interval == 60:
+                return interval
+        else:
+            print("INPUT ERROR: Please enter 1,5,15,30,or 60\n")
+            get_interval()
+    except ValueError:
+        print("INPUT ERROR: Please enter 1,5,15,30,or 60\n")
+        get_interval()
 
 
 def get_beginning_date():
     date1 = input("\nPlease enter the beginning date (YYYY-MM-DD): ")
 
     # input validation goes here
+    # add in if,else statments
 
 
 
@@ -87,6 +104,7 @@ def get_end_date():
     date2 = input("\nPlease enter the end date (YYYY-MM-DD): ")
 
     # input validation goes here
+    # add in if,else statments
 
 
 
@@ -99,6 +117,9 @@ def make_url():
     ss = get_stock_symbol()
     ct = get_chart_type()
     ts = get_time_series_func()
+    i = get_interval()
+    bt = get_beginning_date()
+    ed = get_end_date()
     
     if(ts == "TIME_SERIES_INTRADAY"):
         ti = get_interval()
