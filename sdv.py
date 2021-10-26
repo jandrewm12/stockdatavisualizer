@@ -60,7 +60,10 @@ def get_time_series_func():
         res = "TIME_SERIES_WEEKLY"
     elif(time_series == '4'):
         res = "TIME_SERIES_MONTHLY"
-
+    else:
+        print("INPUT ERROR: Please enter 1,2,3,or 4\n")
+        get_time_series_func()
+        
     return res
 
 def get_interval():
